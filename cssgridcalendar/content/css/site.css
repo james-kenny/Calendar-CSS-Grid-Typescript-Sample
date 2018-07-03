@@ -3,3 +3,31 @@ body{
 }
 
 
+.calendar-container{
+    display: grid;    
+    grid-template-columns: repeat(7, 100px);
+    grid-template-rows: repeat(5, 150px);
+    background-color: gray;
+    grid-gap: 20px;
+    justify-content: center;
+    align-content: center;
+}
+
+.day-item{
+    padding-top: 15px;
+    display: grid;
+    grid-template-rows: 20px 1fr;
+    background: #fff;
+    grid-gap: 20px;
+    justify-content: center;
+    align-content: center;
+}
+
+.day-header{
+    margin: 10px;
+    border: 2px solid #000000;
+}
+
+.selected{
+    background: #1ee8bf;
+}
