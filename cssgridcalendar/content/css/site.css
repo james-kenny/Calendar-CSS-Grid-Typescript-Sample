@@ -13,13 +13,12 @@ body{
 }
 
 .day-item{
-    display: grid;
-    grid-template-rows: 20px 1fr;
+    display: flex;
+    flex-direction: column;
     background: #e6e5ff;
     grid-gap: 20px;
-    justify-content: center;
-    align-content: center;
     min-height: 200px;
+    padding: 10px;
 }
 
 .day-item:hover{
@@ -27,16 +26,16 @@ body{
     border: 1px solid #000000;
 }
 
-.day-header{    
-    background: #fff;
-    height: 30px;
-    max-width: 100px;
-    padding: 10px;
-    font-size: 20px;
-    align-self: center;
-    justify-self: center;
+.day-header-label{
+    font-size: 25px;
+    color: #303030;
+    border-bottom: 1px solid #000000;
 }
 
+.date-label{
+    
+    font-size: 20px;
+}
 
 .selected{
     background: #1ee8bf;
