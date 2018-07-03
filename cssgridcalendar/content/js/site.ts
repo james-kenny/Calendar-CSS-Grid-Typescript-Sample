@@ -25,8 +25,26 @@ function findtoday() {
     console.log('First day: ' + firstDay + ' last day: ' + lastDay);
 
     document.getElementById("today-date").innerText = day.toDateString();
+}
 
+function GetSelectedMonth(iMonth)
+{
+    // Month Array
+    var month = new Array();
+        month[0] = "January";
+        month[1] = "February";
+        month[2] = "March";
+        month[3] = "April";
+        month[4] = "May";
+        month[5] = "June";
+        month[6] = "July";
+        month[7] = "August";
+        month[8] = "September";
+        month[9] = "October";
+        month[10] = "November";
+        month[11] = "December";
 
+    return month[iMonth];
 }
 
 function buildcalendar() {
@@ -34,17 +52,21 @@ function buildcalendar() {
     var dfirstDay = new Date(dtoday.getFullYear(), dtoday.getMonth(), 1);
     var dlastDay = new Date(dtoday.getFullYear(), dtoday.getMonth() + 1, 0);
     var iDays = dlastDay.getDate();
+    var gridItems = "";
+    var iItem = 1;
 
-    var iItem = 0;
-    for (iItem = 0; iItem <= iDays; iItem++) {
+    for (iItem = 1; iItem <= iDays; iItem++) {
+        var className = "day-item";
+
         if (dtoday.getDate() === iItem){
-            console.log("TODAY!!! - " + iItem   );
+            // Hightlight today!
+            className += " selected";
         }
-        else{
-            console.log('Boom Day - ' + iItem);
-        }
-        
 
+        var sDateLabel = iItem + ' ' + GetSelectedMonth(dtoday.getMonth());
+        gridItems += '<div class="' + className + '" onclick="dateclicked('  + iItem +  ')"><div>' + sDateLabel + '</div><div></div></div>';
     }
 
+    
+    document.getElementById("calendar-container").innerHTML = gridItems;
 }
