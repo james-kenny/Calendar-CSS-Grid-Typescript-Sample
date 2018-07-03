@@ -27,6 +27,12 @@ function findtoday() {
     document.getElementById("today-date").innerText = day.toDateString();
 }
 
+function GetSelectedWeekDay(day){    
+    var Wday: string[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    return Wday[day.getDay()];
+}
+
 function GetSelectedMonth(iMonth)
 {
     // Month Array
@@ -47,15 +53,47 @@ function GetSelectedMonth(iMonth)
     return month[iMonth];
 }
 
-function buildcalendar() {
+function buildcalendarformonth() {
     var dtoday = new Date();
+    
     var dfirstDay = new Date(dtoday.getFullYear(), dtoday.getMonth(), 1);
+
     var dlastDay = new Date(dtoday.getFullYear(), dtoday.getMonth() + 1, 0);
     var iDays = dlastDay.getDate();
     var gridItems = "";
     var iItem = 1;
 
     for (iItem = 1; iItem <= iDays; iItem++) {
+        var className = "day-item";
+
+        if (dtoday.getDate() === iItem){
+            // Hightlight today!
+            className += " selected";
+        }
+
+        var sDateLabel = iItem + ' ' + GetSelectedMonth(dtoday.getMonth());
+        gridItems += '<div class="' + className + '" onclick="dateclicked('  + iItem +  ')"><div>' + sDateLabel + '</div><div></div></div>';
+    }
+
+    
+    document.getElementById("calendar-container").innerHTML = gridItems;
+}
+
+
+function buildcalendarforweek() {
+    var dtoday = new Date();
+    
+    var d = dtoday.getDay(); 
+
+    var mondayOfWeek = new Date(dtoday.getFullYear(), dtoday.getMonth(), dtoday.getDate() + (d == 0?-6:1)-d );
+
+    var gridItems = "";
+    console.log('****()****');
+    console.log('--- Monday: ' + mondayOfWeek);
+    console.log('--- Monday: ' + mondayOfWeek.getDate());
+
+    var iDays = mondayOfWeek.getDate() + 6;
+    for (var iItem = mondayOfWeek.getDate(); iItem <= iDays; iItem++) {
         var className = "day-item";
 
         if (dtoday.getDate() === iItem){
