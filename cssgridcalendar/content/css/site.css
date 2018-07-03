@@ -31,3 +31,11 @@ body{
 .selected{
     background: #1ee8bf;
 }
+
+.today-date{
+    font-size: 15px;
+    font-weight: bold;
+}
+.today-date:before{
+    content: "Todays Date: ";
+}
