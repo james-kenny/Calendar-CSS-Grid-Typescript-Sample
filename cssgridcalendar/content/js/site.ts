@@ -64,7 +64,7 @@ function buildcalendarformonth() {
 
     var dlastDay = new Date(dtoday.getFullYear(), dtoday.getMonth() + 1, 0);
     var iDays = dlastDay.getDate();
-    var gridItems = "";
+    var gridItems = getDayLabels();
     var iItem = 1;
 
     for (iItem = 1; iItem <= iDays; iItem++) {
@@ -80,7 +80,7 @@ function buildcalendarformonth() {
     }
 
     
-    document.getElementById("calendar-container").innerHTML = gridItems;
+    document.getElementById("calendar-days-container").innerHTML = gridItems;
 }
 
 
@@ -91,7 +91,7 @@ function buildcalendarforweek() {
 
     var mondayOfWeek = new Date(dtoday.getFullYear(), dtoday.getMonth(), dtoday.getDate() + (d == 0?-6:1)-d );
 
-    var gridItems = "";
+    var gridItems = getDayLabels();
 
     var iDays = mondayOfWeek.getDate() + 6;
     for (var iItem = mondayOfWeek.getDate(); iItem <= iDays; iItem++) {
@@ -109,7 +109,7 @@ function buildcalendarforweek() {
     }
 
     
-    document.getElementById("calendar-container").innerHTML = gridItems;
+    document.getElementById("calendar-days-container").innerHTML = gridItems;
 }
 
 function buildcalendar(){    
@@ -121,7 +121,7 @@ function buildcalendar(){
     // Build the date we will use for the label.
     var dCurrentDate = new Date(mondayOfWeek.getFullYear(), mondayOfWeek.getMonth(), mondayOfWeek.getDate());
     
-    var gridItems = "";
+    var gridItems = getDayLabels();
 
     for (var iItem = mondayOfWeek.getDate(); iItem <= iDays; iItem++) {
         var className = "day-item";
@@ -150,7 +150,7 @@ function buildcalendar(){
     }
 
 
-    document.getElementById("calendar-container").innerHTML = gridItems;
+    document.getElementById("calendar-days-container").innerHTML = gridItems;
     
     
 }
@@ -179,4 +179,11 @@ function addDays(date, days) {
           month[11] = "Dec";
   
       return month[iMonth];
+  }
+
+  function getDayLabels(){
+
+
+
+      return '<div class="day-header">Mon</div><div class="day-header">Tue</div><div  class="day-header"> Wed</div><div class="day-header">Thu</div><div class="day-header">Fri</div><div class="day-header">Sat</div><div class="day-header">Sun</div>';
   }

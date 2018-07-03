@@ -47,7 +47,7 @@ function buildcalendarformonth() {
     var dfirstDay = new Date(dtoday.getFullYear(), dtoday.getMonth(), 1);
     var dlastDay = new Date(dtoday.getFullYear(), dtoday.getMonth() + 1, 0);
     var iDays = dlastDay.getDate();
-    var gridItems = "";
+    var gridItems = getDayLabels();
     var iItem = 1;
     for (iItem = 1; iItem <= iDays; iItem++) {
         var className = "day-item";
@@ -58,13 +58,13 @@ function buildcalendarformonth() {
         var sDateLabel = iItem + ' ' + GetSelectedMonth(dtoday.getMonth());
         gridItems += '<div class="' + className + '" onclick="dateclicked(' + iItem + ')"><div>' + sDateLabel + '</div><div></div></div>';
     }
-    document.getElementById("calendar-container").innerHTML = gridItems;
+    document.getElementById("calendar-days-container").innerHTML = gridItems;
 }
 function buildcalendarforweek() {
     var dtoday = new Date();
     var d = dtoday.getDay();
     var mondayOfWeek = new Date(dtoday.getFullYear(), dtoday.getMonth(), dtoday.getDate() + (d == 0 ? -6 : 1) - d);
-    var gridItems = "";
+    var gridItems = getDayLabels();
     var iDays = mondayOfWeek.getDate() + 6;
     for (var iItem = mondayOfWeek.getDate(); iItem <= iDays; iItem++) {
         var className = "day-item";
@@ -75,7 +75,7 @@ function buildcalendarforweek() {
         var sDateLabel = iItem;
         gridItems += '<div class="' + className + '" onclick="dateclicked(' + iItem + ')"><div>' + sDateLabel + '</div><div></div></div>';
     }
-    document.getElementById("calendar-container").innerHTML = gridItems;
+    document.getElementById("calendar-days-container").innerHTML = gridItems;
 }
 function buildcalendar() {
     var dtoday = new Date();
@@ -84,7 +84,7 @@ function buildcalendar() {
     var iDays = 36; // I want 35 days filled in from the first Monday, I count from 1 not 0 so 36 is our target.
     // Build the date we will use for the label.
     var dCurrentDate = new Date(mondayOfWeek.getFullYear(), mondayOfWeek.getMonth(), mondayOfWeek.getDate());
-    var gridItems = "";
+    var gridItems = getDayLabels();
     for (var iItem = mondayOfWeek.getDate(); iItem <= iDays; iItem++) {
         var className = "day-item";
         if (dtoday.getDate() === iItem) {
@@ -100,12 +100,11 @@ function buildcalendar() {
         else {
             sDateLabel = dCurrentDate.getDate().toString();
         }
-        var iMonth = dCurrentDate.getMonth() + 1;
-        gridItems += '<div class="' + className + '" onclick="dateclicked(' + dCurrentDate.getFullYear() + ',' + iMonth + ',' + dCurrentDate.getDate() + ')"><div>' + sDateLabel + '</div><div></div></div>';
+        gridItems += '<div class="' + className + '" onclick="dateclicked(' + dCurrentDate.getFullYear() + ',' + dCurrentDate.getMonth() + ',' + dCurrentDate.getDate() + ')"><div>' + sDateLabel + '</div><div></div></div>';
         // Next day!
         dCurrentDate = addDays(dCurrentDate, 1);
     }
-    document.getElementById("calendar-container").innerHTML = gridItems;
+    document.getElementById("calendar-days-container").innerHTML = gridItems;
 }
 function addDays(date, days) {
     var result = new Date(date);
@@ -128,4 +127,7 @@ function getshortmonth(iMonth) {
     month[10] = "Nov";
     month[11] = "Dec";
     return month[iMonth];
+}
+function getDayLabels() {
+    return '<div class="day-header">Mon</div><div class="day-header">Tue</div><div  class="day-header"> Wed</div><div class="day-header">Thu</div><div class="day-header">Fri</div><div class="day-header">Sat</div><div class="day-header">Sun</div>';
 }

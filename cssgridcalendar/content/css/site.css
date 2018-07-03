@@ -2,8 +2,7 @@ body{
     padding: 10px;
 }
 
-
-.calendar-container{
+.calendar-days-container{
     display: grid;    
     grid-template-columns: repeat(7, 100px);
     grid-template-rows: repeat(5, 150px);
@@ -14,22 +13,36 @@ body{
 }
 
 .day-item{
-    padding-top: 15px;
     display: grid;
     grid-template-rows: 20px 1fr;
-    background: #fff;
+    background: #e6e5ff;
     grid-gap: 20px;
     justify-content: center;
     align-content: center;
 }
 
-.day-header{
-    margin: 10px;
-    border: 2px solid #000000;
+
+.day-item:hover{
+    background: #fff;
+    border: 1px solid #000000;
 }
+
+.day-header{    
+    background: #fff;
+    justify-content: center;
+    align-content: center;
+    max-height: 100px;
+    padding: 10px;
+}
+
 
 .selected{
     background: #1ee8bf;
+}
+
+.selected:hover{
+    background: #56ff97;
+    color: #000000;
 }
 
 .today-date{
