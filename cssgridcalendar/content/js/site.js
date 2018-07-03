@@ -64,9 +64,6 @@ function buildcalendarforweek() {
     var d = dtoday.getDay();
     var mondayOfWeek = new Date(dtoday.getFullYear(), dtoday.getMonth(), dtoday.getDate() + (d == 0 ? -6 : 1) - d);
     var gridItems = "";
-    console.log('****()****');
-    console.log('--- Monday: ' + mondayOfWeek);
-    console.log('--- Monday: ' + mondayOfWeek.getDate());
     var iDays = mondayOfWeek.getDate() + 6;
     for (var iItem = mondayOfWeek.getDate(); iItem <= iDays; iItem++) {
         var className = "day-item";
@@ -74,8 +71,59 @@ function buildcalendarforweek() {
             // Hightlight today!
             className += " selected";
         }
-        var sDateLabel = iItem + ' ' + GetSelectedMonth(dtoday.getMonth());
+        var sDateLabel = iItem;
         gridItems += '<div class="' + className + '" onclick="dateclicked(' + iItem + ')"><div>' + sDateLabel + '</div><div></div></div>';
     }
     document.getElementById("calendar-container").innerHTML = gridItems;
+}
+function buildcalendar() {
+    var dtoday = new Date();
+    var d = dtoday.getDay();
+    var mondayOfWeek = new Date(dtoday.getFullYear(), dtoday.getMonth(), dtoday.getDate() + (d == 0 ? -6 : 1) - d);
+    var iDays = 36; // I want 35 days filled in from the first Monday, I count from 1 not 0 so 36 is our target.
+    // Build the date we will use for the label.
+    var dCurrentDate = new Date(mondayOfWeek.getFullYear(), mondayOfWeek.getMonth(), mondayOfWeek.getDate());
+    var gridItems = "";
+    for (var iItem = mondayOfWeek.getDate(); iItem <= iDays; iItem++) {
+        var className = "day-item";
+        if (dtoday.getDate() === iItem) {
+            // Hightlight today!
+            className += " selected";
+        }
+        var sMonthLabel = "";
+        var sDateLabel = "";
+        if (dtoday.getMonth() !== dCurrentDate.getMonth()) {
+            sMonthLabel = getshortmonth(dCurrentDate.getMonth());
+            sDateLabel = sMonthLabel + " " + dCurrentDate.getDate();
+        }
+        else {
+            sDateLabel = dCurrentDate.getDate().toString();
+        }
+        gridItems += '<div class="' + className + '" onclick="dateclicked(' + iItem + ')"><div>' + sDateLabel + '</div><div></div></div>';
+        // Next day!
+        dCurrentDate = addDays(dCurrentDate, 1);
+    }
+    document.getElementById("calendar-container").innerHTML = gridItems;
+}
+function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+}
+function getshortmonth(iMonth) {
+    // Month Array
+    var month = new Array();
+    month[0] = "Jan";
+    month[1] = "Feb";
+    month[2] = "Mar";
+    month[3] = "Apr";
+    month[4] = "May";
+    month[5] = "June";
+    month[6] = "July";
+    month[7] = "Aug";
+    month[8] = "Sept";
+    month[9] = "Oct";
+    month[10] = "Nov";
+    month[11] = "Dec";
+    return month[iMonth];
 }
