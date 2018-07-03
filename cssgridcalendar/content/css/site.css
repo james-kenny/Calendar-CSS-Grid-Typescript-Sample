@@ -4,10 +4,9 @@ body{
 
 .calendar-days-container{
     display: grid;    
-    grid-template-columns: repeat(7, 100px);
-    grid-template-rows: repeat(5, auto);
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(5, 1fr);
     background-color: gray;
-    grid-gap: 20px;
     justify-content: center;
     align-content: center;
 }
@@ -17,7 +16,6 @@ body{
     flex-direction: column;
     background: #e6e5ff;
     grid-gap: 20px;
-    min-height: 200px;
     padding: 10px;
     -webkit-transform: perspective(1px) translateZ(0);
     transform: perspective(1px) translateZ(0);
