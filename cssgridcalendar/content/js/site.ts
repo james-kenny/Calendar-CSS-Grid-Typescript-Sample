@@ -1,7 +1,11 @@
 // Just the starting part of the typescript side. For now I'm working on the CSS Grid part this will come later.
 
 var dateclicked = function (iYear, iMonth, iDay) {
-    console.log('A date has been clicked! - '+ iYear + ' - ' + iMonth + ' - ' + iDay);
+    var dSelected = new Date(iYear, iMonth, iDay);
+
+    console.log('A date has been clicked! - ' + dSelected + ' - '+ iYear + ' - ' + iMonth + ' - ' + iDay);
+
+
 };
 
 function findtoday() {
@@ -138,9 +142,8 @@ function buildcalendar(){
             sDateLabel = dCurrentDate.getDate().toString();
         }
 
-        var iMonth = dCurrentDate.getMonth() + 1;
 
-        gridItems += '<div class="' + className + '" onclick="dateclicked('  + dCurrentDate.getFullYear() + ',' + iMonth + ',' + dCurrentDate.getDate() +  ')"><div>' + sDateLabel + '</div><div></div></div>';
+        gridItems += '<div class="' + className + '" onclick="dateclicked('  + dCurrentDate.getFullYear() + ',' + dCurrentDate.getMonth() + ',' + dCurrentDate.getDate() +  ')"><div>' + sDateLabel + '</div><div></div></div>';
         
         // Next day!
         dCurrentDate = addDays(dCurrentDate, 1);

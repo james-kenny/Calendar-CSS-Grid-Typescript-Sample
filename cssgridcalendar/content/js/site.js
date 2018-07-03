@@ -1,6 +1,7 @@
 // Just the starting part of the typescript side. For now I'm working on the CSS Grid part this will come later.
 var dateclicked = function (iYear, iMonth, iDay) {
-    console.log('A date has been clicked! - ' + iYear + ' - ' + iMonth + ' - ' + iDay);
+    var dSelected = new Date(iYear, iMonth, iDay);
+    console.log('A date has been clicked! - ' + dSelected + ' - ' + iYear + ' - ' + iMonth + ' - ' + iDay);
 };
 function findtoday() {
     // a bit of javascript code to get today and first day of week / month.
