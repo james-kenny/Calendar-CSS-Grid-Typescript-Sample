@@ -5,7 +5,7 @@ body{
 .calendar-days-container{
     display: grid;    
     grid-template-columns: repeat(7, 100px);
-    grid-template-rows: repeat(5, 150px);
+    grid-template-rows: repeat(5, auto);
     background-color: gray;
     grid-gap: 20px;
     justify-content: center;
@@ -19,8 +19,8 @@ body{
     grid-gap: 20px;
     justify-content: center;
     align-content: center;
+    min-height: 200px;
 }
-
 
 .day-item:hover{
     background: #fff;
@@ -29,10 +29,12 @@ body{
 
 .day-header{    
     background: #fff;
-    justify-content: center;
-    align-content: center;
-    max-height: 100px;
+    height: 30px;
+    max-width: 100px;
     padding: 10px;
+    font-size: 20px;
+    align-self: center;
+    justify-self: center;
 }
 
 
