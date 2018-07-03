@@ -5,13 +5,23 @@ The calendar is built from a vanilla javascript function. You can pass in a date
 ![sample Grid image](https://raw.githubusercontent.com/mordin/Calendar-CSS-Grid-Typescript-Sample/master/sample.png)
 
 `
-    buildcalendar(0, 0, 0, 0);
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            buildcalendar(0, 0, 0, 0);
+        });
+    </script>
 `
 
 By default this will load 35 days from the Monday of the current week.
 
 `
-buildcalendar(7, 0, 0, 0);
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            buildcalendar(0, 0, 0, 0);
+        });
+    </script>
+
 `
 
 This will show just this week.
